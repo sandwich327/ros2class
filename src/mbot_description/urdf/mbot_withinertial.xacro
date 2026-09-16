@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot name="mbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find mbot_description)/urdf/mbot_base_withinertial.xacro" />
+    <xacro:include filename="$(find mbot_description)/urdf/sensors/camera_withinertial.xacro" />
+    <xacro:include filename="$(find mbot_description)/urdf/sensors/lidar_withinertial.xacro" />
+
+    <xacro:usb_camera prefix="camera" />
+
+    <xacro:property name="camera_offset_x" value="0.17" />
+    <xacro:property name="camera_offset_y" value="0" />
+    <xacro:property name="camera_offset_z" value="0.10" />
+
+    <!-- Camera -->
+    <joint name="camera_joint" type="fixed">
+        <origin xyz="${camera_offset_x} ${camera_offset_y} ${camera_offset_z}" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="camera_link" />
+    </joint>
+
+    <xacro:property name="lidar_offset_x" value="0" />
+    <xacro:property name="lidar_offset_y" value="0" />
+    <xacro:property name="lidar_offset_z" value="0.105" />
+
+    <!-- lidar -->
+    <joint name="lidar_joint" type="fixed">
+        <origin xyz="${lidar_offset_x} ${lidar_offset_y} ${lidar_offset_z}" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="laser_link" />
+    </joint>
+
+    <xacro:rplidar prefix="laser" />
+
+    <!-- IMU -->
+    <!-- <xacro:include filename="$(find mbot_description)/urdf/sensors/IMU_withinertial.xacro" />
+    <xacro:property name="imu_offset_x" value="0" />
+    <xacro:property name="imu_offset_y" value="0" />
+    <xacro:property name="imu_offset_z" value="0.105" /> -->
+
+    <!-- imu -->
+    <!-- <joint name="imu_joint" type="fixed">
+        <origin xyz="${imu_offset_x} ${imu_offset_y} ${imu_offset_z}" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="imu_link" />
+    </joint>
+
+    <xacro:generic_imu prefix="imu" /> -->
+
+</robot>

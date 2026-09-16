@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rgbd_camera">
+
+    <xacro:macro name="rgbd_camera" params="prefix:=camera">
+        <!-- Create rgbd reference frame -->
+        <!-- Add mesh for rgbd -->
+        <link name="${prefix}_link">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 ${M_PI/2}"/>
+                <geometry>
+                    <box size="0.15 0.04 0.04" />
+                </geometry>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="0.07 0.3 0.09"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${prefix}_optical_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+            <parent link="${prefix}_link"/>
+            <child link="${prefix}_frame_optical"/>
+        </joint>
+
+        <link name="${prefix}_frame_optical"/>
+
+        <gazebo reference="${prefix}_link">
+			<sensor name="rgbd_camera" type="rgbd_camera">
+				<camera>
+					<horizontal_fov>1.047</horizontal_fov>
+					<image>
+						<width>640</width>
+						<height>480</height>
+					</image>
+					<clip>
+						<near>0.1</near>
+						<far>100</far>
+					</clip>
+				</camera>
+				<always_on>1</always_on>
+				<update_rate>20</update_rate>
+				<visualize>true</visualize>
+				<topic>rgbd_camera</topic>
+				<enable_metrics>true</enable_metrics>
+				<ignition_frame_id>${prefix}_link</ignition_frame_id>
+			</sensor>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

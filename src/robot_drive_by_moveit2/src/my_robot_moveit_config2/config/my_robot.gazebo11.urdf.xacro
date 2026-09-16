@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_robot">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import my_robot urdf file -->
+    <xacro:include filename="$(find my_robot_description)/urdf/my_robotwithoutcontroller.xacro" />
+
+    <gazebo>
+        <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+            <robot_namespace></robot_namespace>
+            <robot_param>robot_description</robot_param>
+            <control_hz>100</control_hz>
+            <!-- 可选：如果用的是系统接口，还可以加 -->
+            <parameters>/home/sandwich/ros2_ws/install/my_robot_moveit_config2/share/my_robot_moveit_config2/config/ros2_controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
+    <!-- Import control_xacro -->
+    <xacro:include filename="my_robot.gazebo11.ros2_control.xacro" />
+
+    <xacro:my_robot_ros2_controlg name="GazeboSimSystem"
+        initial_positions_file="$(arg initial_positions_file)" />
+
+</robot>

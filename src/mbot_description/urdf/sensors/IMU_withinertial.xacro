@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="imu">
+
+    <xacro:macro name="generic_imu" params="prefix:=imu update_rate:=200">
+        <link name="${prefix}_link">
+            <inertial>
+                <mass value="0.02" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="2.0e-5" ixy="0.0" ixz="0.0"
+                    iyy="2.0e-5" iyz="0.0"
+                    izz="2.0e-5" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.03 0.03 0.01" />
+                </geometry>
+                <material name="dark_gray" />
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.03 0.03 0.01" />
+                </geometry>
+            </collision>
+        </link>
+
+        <gazebo reference="${prefix}_link">
+            <material>Gazebo/DarkGrey</material>
+        </gazebo>
+
+        <!-- 正确的 imu 传感器 + 噪声定义（Classic Gazebo） -->
+        <gazebo reference="${prefix}_link">
+            <sensor type="imu" name="${prefix}_sensor">
+                <always_on>true</always_on>
+                <update_rate>${update_rate}</update_rate>
+                <visualize>false</visualize>
+                <imu>
+                    <!-- 角速度噪声 -->
+                    <angular_velocity>
+                        <x>
+                            <noise type="gaussian">
+                                <mean>0.0</mean>
+                                <stddev>0.0002</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.00001</bias_stddev>
+                            </noise>
+                        </x>
+                        <y>
+                            <noise type="gaussian">
+                                <mean>0.0</mean>
+                                <stddev>0.0002</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.00001</bias_stddev>
+                            </noise>
+                        </y>
+                        <z>
+                            <noise type="gaussian">
+                                <mean>0.0</mean>
+                                <stddev>0.0002</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.00001</bias_stddev>
+                            </noise>
+                        </z>
+                    </angular_velocity>
+
+                    <!-- 线加速度噪声 -->
+                    <linear_acceleration>
+                        <x>
+                            <noise type="gaussian">
+                                <mean>0.0</mean>
+                                <stddev>0.002</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.0001</bias_stddev>
+                            </noise>
+                        </x>
+                        <y>
+                            <noise type="gaussian">
+                                <mean>0.0</mean>
+                                <stddev>0.002</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.0001</bias_stddev>
+                            </noise>
+                        </y>
+                        <z>
+                            <noise type="gaussian">
+                                <mean>0.0</mean>
+                                <stddev>0.002</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.0001</bias_stddev>
+                            </noise>
+                        </z>
+                    </linear_acceleration>
+                </imu>
+                <!-- 插件仅处理 ROS 发布与 frame -->
+                <plugin name="${prefix}_gazebo_ros_imu" filename="libgazebo_ros_imu_sensor.so">
+                    <ros>
+                        <namespace>/</namespace>
+                        <remapping>~/out:=imu/data</remapping>
+                    </ros>
+                    <frame_name>${prefix}_link</frame_name>
+                    <initial_orientation_as_reference>false</initial_orientation_as_reference>
+                </plugin>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>

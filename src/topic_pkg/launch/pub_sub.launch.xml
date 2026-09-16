@@ -1,0 +1,6 @@
+<launch> 
+ <node pkg = "topic_pkg" exec = "publisher_node" name = "publisher_node" />
+ <node pkg = "topic_pkg" exec = "subscriber_node" name = "subscriber_node" /> 
+ <node pkg = "topic_pkg" exec = "selftopicpublisher_node" name = "selftopicpublisher_node" />
+ <node pkg = "topic_pkg" exec = "selftopicsubscriber_node" name = "selftopicsubscriber_node" /> 
+</launch>

@@ -1,0 +1,4 @@
+minimal_param_server:
+  ros__parameters:
+    param1: "value1"
+    param2: 10

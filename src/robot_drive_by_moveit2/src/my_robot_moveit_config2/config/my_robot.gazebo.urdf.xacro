@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_robot">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import my_robot urdf file -->
+    <xacro:include filename="$(find my_robot_description)/urdf/my_robotwithoutcontroller.xacro" />
+
+    <gazebo>
+        <!-- <joint name="world_joint" type="fixed">
+            <parent link="world"/>
+            <child link="base_link"/>            
+        </joint> -->
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find my_robot_moveit_config2)/config/ros2_controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
+
+    <!-- Import control_xacro -->
+    <xacro:include filename="my_robot.gazebo.ros2_control.xacro" />
+
+    <xacro:my_robot_ros2_control name="GazeboSimSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
+</robot>

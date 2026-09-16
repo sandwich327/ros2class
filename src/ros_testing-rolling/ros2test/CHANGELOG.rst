@@ -1,0 +1,62 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package ros2test
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+0.9.1 (2025-07-29)
+------------------
+* fix setuptools deprecations (`#16 <https://github.com/ros2/ros_testing/issues/16>`_)
+* Contributors: mosfet80
+
+0.9.0 (2025-04-25)
+------------------
+
+0.8.0 (2024-11-20)
+------------------
+* Add in test_xmllint to ros2test. (`#13 <https://github.com/ros2/ros_testing/issues/13>`_)
+* Contributors: Chris Lalancette
+
+0.7.0 (2024-04-26)
+------------------
+
+0.6.0 (2023-04-28)
+------------------
+
+0.5.2 (2023-02-13)
+------------------
+* [rolling] Update maintainers - 2022-11-07 (`#12 <https://github.com/ros2/ros_testing/issues/12>`_)
+* Contributors: Audrow Nash
+
+0.5.1 (2022-09-13)
+------------------
+* update maintainer
+* Contributors: Dharini Dutia, quarkytale
+
+0.5.0 (2022-04-29)
+------------------
+
+0.4.0 (2022-01-13)
+------------------
+* Use new domain_coordinator API (`#10 <https://github.com/ros2/ros_testing/issues/10>`_)
+* Contributors: Timo Röhling
+
+0.3.0 (2021-03-19)
+------------------
+* Add pytest.ini so local tests don't display warning (`#8 <https://github.com/ros2/ros_testing/issues/8>`_)
+* Contributors: Chris Lalancette
+
+0.2.1 (2020-04-30)
+------------------
+* More verbose test_flake8 error messages (same as `ros2/launch_ros#135 <https://github.com/ros2/launch_ros/issues/135>`_)
+* Contributors: Dirk Thomas
+
+0.2.0 (2019-09-26)
+------------------
+* install resource marker file for package (`#5 <https://github.com/ros2/ros_testing/issues/5>`_)
+* install package manifest (`#4 <https://github.com/ros2/ros_testing/issues/4>`_)
+* Move --disable-isolation argument from launch_testing to ros2test (`#2 <https://github.com/ros2/ros_testing/issues/2>`_)
+* Contributors: Dirk Thomas, ivanpauno
+
+0.1.0 (2019-05-20)
+------------------
+* Add ros_testing metapackage and ros2test CLI package (`#1 <https://github.com/ros2/ros_testing/issues/1>`_)
+* Contributors: Michel Hidalgo

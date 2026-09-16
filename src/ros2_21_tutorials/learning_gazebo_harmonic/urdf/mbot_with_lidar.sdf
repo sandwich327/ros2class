@@ -1,0 +1,260 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="mbot_with_lidar">
+    <!-- Base Link -->
+    <link name="base_link">
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>0.0166667</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0166667</iyy>
+          <iyz>0</iyz>
+          <izz>0.0166667</izz>
+        </inertia>
+      </inertial>
+      <collision name="base_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.20</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="base_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.20</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>1 0.4 0 1</ambient>
+          <diffuse>1 0.4 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Left Wheel -->
+    <link name="left_wheel">
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.00015</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00015</iyy>
+          <iyz>0</iyz>
+          <izz>0.00015</izz>
+        </inertia>
+      </inertial>
+      <collision name="left_wheel_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.06</radius>
+            <length>0.025</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="left_wheel_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.06</radius>
+            <length>0.025</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.75 0.75 0.75 1</ambient>
+          <diffuse>0.75 0.75 0.75 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Right Wheel -->
+    <link name="right_wheel">
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.00015</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00015</iyy>
+          <iyz>0</iyz>
+          <izz>0.00015</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_wheel_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.06</radius>
+            <length>0.025</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="right_wheel_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.06</radius>
+            <length>0.025</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.75 0.75 0.75 1</ambient>
+          <diffuse>0.75 0.75 0.75 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Caster Wheel -->
+    <link name="caster_wheel">
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00001</iyy>
+          <iyz>0</iyz>
+          <izz>0.00001</izz>
+        </inertia>
+      </inertial>
+      <collision name="caster_collision">
+        <geometry>
+          <sphere>
+            <radius>0.015</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="caster_visual">
+        <geometry>
+          <sphere>
+            <radius>0.015</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+
+    <!-- GPU Lidar Link -->
+    <link name="gpu_lidar_link">
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.000016667</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000016667</iyy>
+          <iyz>0</iyz>
+          <izz>0.000016667</izz>
+        </inertia>
+      </inertial>
+      <collision name="lidar_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="lidar_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+      <sensor name="gpu_lidar" type="gpu_ray">
+        <topic>lidar</topic>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.08</min>
+            <max>10.0</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <always_on>1</always_on>
+        <visualize>true</visualize>
+      </sensor>
+    </link>
+
+    <!-- Joints -->
+    <joint name="left_wheel_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>left_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.79769e+308</lower>
+          <upper>1.79769e+308</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="right_wheel_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>right_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.79769e+308</lower>
+          <upper>1.79769e+308</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="caster_wheel_joint" type="ball">
+      <parent>base_link</parent>
+      <child>caster_wheel</child>
+    </joint>
+
+    <joint name="lidar_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>gpu_lidar_link</child>
+      <pose>0 0 0.105 0 0 0</pose>
+    </joint>
+
+    <!-- Plugins -->
+    <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.38</wheel_separation>
+      <wheel_radius>0.06</wheel_radius>
+      <odom_publish_frequency>1</odom_publish_frequency>
+      <topic>cmd_vel</topic>
+    </plugin>
+
+    <plugin filename="libignition-gazebo-odometry-publisher-system.so" name="ignition::gazebo::systems::OdometryPublisher">
+      <odom_frame>odom</odom_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_publish_frequency>20</odom_publish_frequency>
+    </plugin>
+
+    <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher">
+      <joint_name>left_wheel_joint</joint_name>
+      <joint_name>right_wheel_joint</joint_name>
+    </plugin>
+  </model>
+</sdf>
