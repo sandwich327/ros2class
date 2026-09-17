@@ -9,5 +9,4 @@ src/moveit2/
 src/moveit2_tutorials/
 src/moveit_task_constructor/
 src/moveit_resources-ros2/
-src/gazebo_ros2_control-humble/
 src/osqp/
