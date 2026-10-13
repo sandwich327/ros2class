@@ -14,7 +14,11 @@ int main(int argc, char **argv)
     rclcpp::init(argc, argv);
     node = std::make_shared<rclcpp::Node>("subscriber_node");
     auto subscriber = node->create_subscription<std_msgs::msg::String>("/helloworld_topic", 10, &Callback);
-    rclcpp::spin(node);
+    //rclcpp::spin(node);
+    while(rclcpp::ok())
+    {
+        rclcpp::spin_some(node);
+    }
     rclcpp::shutdown();
     return 0;
 }

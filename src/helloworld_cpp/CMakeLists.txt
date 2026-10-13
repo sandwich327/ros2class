@@ -23,7 +23,7 @@ add_executable(proposed_node src/proposed_node.cpp)
 ament_target_dependencies(
   my_node
   "rclcpp"
-)
+)  #same function as target_link_libraries but also adds include directories and other dependencies
 ament_target_dependencies(
   proposed_node
   "rclcpp"
