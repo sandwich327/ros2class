@@ -8,9 +8,12 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 
 add_executable(param_server src/param_server.cpp)
 add_executable(param_client src/param_client.cpp)
+add_executable(variedInterval src/variedInterval.cpp)
+
 
 # target_include_directories(param_server PUBLIC
 #   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -24,8 +27,13 @@ ament_target_dependencies(
   param_client
   "rclcpp"
 )
+ament_target_dependencies(
+  variedInterval
+  "rclcpp"
+  "std_msgs"
+)
 
-install(TARGETS param_server param_client
+install(TARGETS param_server param_client variedInterval
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
