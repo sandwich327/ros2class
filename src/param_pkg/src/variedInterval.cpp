@@ -45,7 +45,7 @@ private:
                 if (new_value < 0.0)
                 {
                     result.successful = false;
-                    result.reason = "参数值超出范围 [0.0, 1000.0]";
+                    result.reason = "参数值超出范围 < [0.0]";
                     return result;
                 }
                 else
