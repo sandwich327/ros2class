@@ -8,7 +8,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_srvs REQUIRED)
+# find_package(std_srvs REQUIRED)
 find_package(msg_pkg REQUIRED)
 #find_package(rosidl_default_generators REQUIRED)
 
@@ -34,25 +34,25 @@ add_executable(mystringclient src/mystringclient.cpp)
 ament_target_dependencies(
   myserver
   rclcpp
-  std_srvs
+  # std_srvs
   msg_pkg
 )
 ament_target_dependencies(
   myclient
   rclcpp
-  std_srvs
+  # std_srvs
   msg_pkg
 )
 ament_target_dependencies(
   mystringserver
   rclcpp
-  std_srvs
+  # std_srvs
   msg_pkg
 )
 ament_target_dependencies(
   mystringclient
   rclcpp
-  std_srvs
+  # std_srvs
   msg_pkg
 )
 
