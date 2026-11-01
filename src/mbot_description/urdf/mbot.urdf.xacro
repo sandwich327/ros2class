@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="mbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
     
-    <xacro:include filename="$(find mbot_description)/urdf/mbot_base.xacro"/>
+    <xacro:include filename="$(find mbot_description)/urdf/mbot_base.urdf.xacro"/>
     <xacro:include filename="$(find mbot_description)/urdf/sensors/camera.urdf.xacro"/>
     <xacro:include filename="$(find mbot_description)/urdf/sensors/kinect.urdf.xacro"/>
     <xacro:include filename="$(find mbot_description)/urdf/sensors/lidar.urdf.xacro"/>
