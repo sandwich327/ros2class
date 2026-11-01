@@ -151,28 +151,6 @@
         <child link="base_link" />
     </joint>
 
-    <!-- to open next, add a differential controller -->
-    <gazebo>
-        <plugin name="differential_drive_controller"
-            filename="libgazebo_ros_diff_drive.so">
-            <update_rate>30</update_rate>
-            <left_joint>left_wheel_joint</left_joint>
-            <right_joint>right_wheel_joint</right_joint>
-            <wheel_separation>${wheel_joint_y*2}</wheel_separation>
-            <wheel_diameter>${2*wheel_radius}</wheel_diameter>
-            <max_wheel_torque>20</max_wheel_torque>
-            <max_wheel_acceleration>1.0</max_wheel_acceleration>
-            <command_topic>cmd_vel</command_topic>
-            <publish_odom>true</publish_odom>
-            <publish_odom_tf>true</publish_odom_tf>
-            <publish_wheel_tf>true</publish_wheel_tf>
-            <odometry_topic>odom</odometry_topic>
-            <odometry_frame>odom</odometry_frame>
-            <robot_base_frame>base_footprint</robot_base_frame>
-            <odometry_source>1</odometry_source>
-        </plugin>
-    </gazebo>
-
     <xacro:include filename="$(find mbot_description)/urdf/mbot.ros2_control.xacro" />
     <xacro:mbot_ros2_control />
 

@@ -2,6 +2,7 @@ from ament_index_python.packages import get_package_share_path
 from launch import launch_description_sources
 from launch import actions
 from launch import LaunchDescription
+import launch
 from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import Command, LaunchConfiguration
@@ -73,6 +74,21 @@ def generate_launch_description():
         arguments=['-topic','/robot_description','-entity','mbot'],
         output='screen'
     )
+
+    action_load_joint_state_controller = actions.ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'mbot_joint_state_broadcaster'],
+        output='screen'
+    )
+
+    action_load_effot_controller = actions.ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'mbot_effort_controller'],
+        output='screen'
+    )
+
+    action_load_diff_drive_controller = actions.ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'mbot_diff_drive_controller'],
+        output='screen'
+    )
     
     return LaunchDescription([
         model_arg,
@@ -81,6 +97,24 @@ def generate_launch_description():
         robot_state_publisher_node,
         rviz_node,
         action_launch_gazebo,
-        action_spawn_entity
+        action_spawn_entity,
+        actions.RegisterEventHandler(
+            event_handler=launch.event_handlers.OnProcessExit(
+                target_action=action_spawn_entity,
+                on_exit=[action_load_joint_state_controller],
+            )
+        ),
+        actions.RegisterEventHandler(
+                    event_handler=launch.event_handlers.OnProcessExit(
+                        target_action=action_load_joint_state_controller,
+                        on_exit=[action_load_effot_controller],
+                    )
+                ),
+        actions.RegisterEventHandler(
+                    event_handler=launch.event_handlers.OnProcessExit(
+                        target_action=action_load_effot_controller,
+                        on_exit=[action_load_diff_drive_controller],
+                    )
+                ),
     ])
     

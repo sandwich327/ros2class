@@ -2,15 +2,15 @@ controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
     use_sim_time: true
-    fishbot_joint_state_broadcaster:
+    mbot_joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
       use_sim_time: true
-    fishbot_effort_controller:
+    mbot_effort_controller:
       type: effort_controllers/JointGroupEffortController
-    fishbot_diff_drive_controller:
+    mbot_diff_drive_controller:
       type: diff_drive_controller/DiffDriveController
 
-fishbot_effort_controller:
+mbot_effort_controller:
   ros__parameters:
     joints:
       - left_wheel_joint
@@ -24,7 +24,7 @@ fishbot_effort_controller:
 
 
 
-fishbot_diff_drive_controller:
+mbot_diff_drive_controller:
   ros__parameters:
     left_wheel_names: ["left_wheel_joint"]
     right_wheel_names: ["right_wheel_joint"]
