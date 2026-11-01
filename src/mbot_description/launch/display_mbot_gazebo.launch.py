@@ -12,7 +12,7 @@ import os
 def generate_launch_description():
     urdf_tutorial_path = get_package_share_path('mbot_description')#find share directory in mbot_description
     # 组装字符串路径
-    default_model_path = os.path.join(urdf_tutorial_path, 'urdf', 'mbot_withinertial.xacro')
+    default_model_path = os.path.join(urdf_tutorial_path, 'urdf', 'mbot_withinertial.urdf.xacro')
     default_rviz_config_path = os.path.join(urdf_tutorial_path, 'config', 'display_mbotbase.rviz')
     default_gazebo_world_path = os.path.join(urdf_tutorial_path, 'world', 'my_room.world')
 

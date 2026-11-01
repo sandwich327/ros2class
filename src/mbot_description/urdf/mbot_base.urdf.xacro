@@ -15,7 +15,7 @@
     <xacro:property name="caster_joint_x" value="0.18"/>
 
     <!-- Defining the colors used in this robot -->
-    <material name="yellow">
+    <material name="orange_red">
         <color rgba="1 0.4 0 1"/>
     </material>
     <material name="black">
@@ -71,7 +71,7 @@
 			<geometry>
 				<cylinder length="${base_length}" radius="${base_radius}"/>
 			</geometry>
-			<material name="yellow" />
+			<material name="orange_red" />
 	    </visual>
 	</link>
 

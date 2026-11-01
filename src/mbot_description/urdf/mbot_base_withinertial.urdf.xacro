@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="mbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find mbot_description)/urdf/common_inertial.xacro" />
+    <xacro:include filename="$(find mbot_description)/urdf/common_inertial.urdf.xacro" />
 
     <!-- Property List -->
     <xacro:property name="M_PI" value="3.1415926" />

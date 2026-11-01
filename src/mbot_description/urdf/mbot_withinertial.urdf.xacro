@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot name="mbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find mbot_description)/urdf/mbot_base_withinertial.xacro" />
-    <xacro:include filename="$(find mbot_description)/urdf/sensors/camera_withinertial.xacro" />
-    <xacro:include filename="$(find mbot_description)/urdf/sensors/lidar_withinertial.xacro" />
+    <xacro:include filename="$(find mbot_description)/urdf/mbot_base_withinertial.urdf.xacro" />
+    <xacro:include filename="$(find mbot_description)/urdf/sensors/camera_withinertial.urdf.xacro" />
+    <xacro:include filename="$(find mbot_description)/urdf/sensors/lidar_withinertial.urdf.xacro" />
 
     <xacro:usb_camera prefix="camera" />
 
