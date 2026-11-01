@@ -6,7 +6,7 @@
             <geometry>
                 <cylinder length="0.16" radius="0.20"/>
             </geometry>
-            <material name="yellow">
+            <material name="orange_red">
                 <color rgba="1 0.4 0 1"/>
             </material>
         </visual>
