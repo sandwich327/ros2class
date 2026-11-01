@@ -32,18 +32,18 @@
     <xacro:rplidar prefix="laser" />
 
     <!-- IMU -->
-    <!-- <xacro:include filename="$(find mbot_description)/urdf/sensors/IMU_withinertial.xacro" />
+    <xacro:include filename="$(find mbot_description)/urdf/sensors/IMU_withinertial.urdf.xacro" />
     <xacro:property name="imu_offset_x" value="0" />
     <xacro:property name="imu_offset_y" value="0" />
-    <xacro:property name="imu_offset_z" value="0.105" /> -->
+    <xacro:property name="imu_offset_z" value="0.105" />
 
     <!-- imu -->
-    <!-- <joint name="imu_joint" type="fixed">
+    <joint name="imu_joint" type="fixed">
         <origin xyz="${imu_offset_x} ${imu_offset_y} ${imu_offset_z}" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="imu_link" />
     </joint>
 
-    <xacro:generic_imu prefix="imu" /> -->
+    <xacro:generic_imu prefix="imu" />
 
 </robot>

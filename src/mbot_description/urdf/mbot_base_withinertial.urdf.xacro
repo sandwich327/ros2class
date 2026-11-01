@@ -30,6 +30,9 @@
     <material name="gray">
         <color rgba="0.75 0.75 0.75 1" />
     </material>
+    <material name ="dark_gray">
+        <color rgba="0.2 0.2 0.2 1"/>
+    </material>
 
     <!-- Macro for robot wheel -->
     <xacro:macro name="wheel" params="prefix reflect">
@@ -41,7 +44,7 @@
         </joint>
 
         <link name="${prefix}_wheel_link">
-            <visual>
+            <visual name="${prefix}_wheel_link_visual">
                 <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
                 <geometry>
                     <cylinder radius="${wheel_radius}" length="${wheel_length}" />
@@ -49,7 +52,7 @@
                 <material name="gray" />
             </visual>
 
-            <collision>  <!-- add collision and  inertial-->
+            <collision name="${prefix}_wheel_link_collision">  <!-- add collision and  inertial-->
                 <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
                 <geometry>
                     <cylinder radius="${wheel_radius}" length="${wheel_length}" />
@@ -79,14 +82,14 @@
         </joint>
 
         <link name="${prefix}_caster_link">
-            <visual>
+            <visual name="${prefix}_caster_link_visual">
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
                     <sphere radius="${caster_radius}" />
                 </geometry>
                 <material name="black" />
             </visual>
-            <collision>  <!-- add collision and  inertial-->
+            <collision name="${prefix}_caster_link_collision">  <!-- add collision and  inertial-->
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
                     <sphere radius="${caster_radius}" />
@@ -102,14 +105,14 @@
     </xacro:macro>    
 
     <link name="base_link">
-        <visual>
+        <visual name="base_link_visual">
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
                 <cylinder length="${base_length}" radius="${base_radius}" />
             </geometry>
             <material name="yellow" />
         </visual>
-        <collision>  <!-- add collision and inertial matrix-->
+        <collision name="base_link_collision">  <!-- add collision and inertial matrix-->
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
                 <cylinder radius="${base_radius}" length="${base_length}" />
@@ -142,7 +145,6 @@
     <gazebo reference="base_footprint">
         <turnGravityOff>false</turnGravityOff>
     </gazebo>
-
     <joint name="base_footprint_joint" type="fixed">
         <origin xyz="0 0 ${base_length/2 + caster_radius*2}" rpy="0 0 0" />
         <parent link="base_footprint" />

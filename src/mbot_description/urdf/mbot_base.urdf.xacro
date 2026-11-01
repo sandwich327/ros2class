@@ -24,7 +24,10 @@
     <material name="gray">
         <color rgba="0.75 0.75 0.75 1"/>
     </material>
-    
+    <material name ="dark_gray">
+        <color rgba="0.2 0.2 0.2 1"/>
+    </material>
+
     <!-- Macro for robot wheel -->
     <xacro:macro name="wheel" params="prefix reflect">
         <joint name="${prefix}_wheel_joint" type="continuous">
