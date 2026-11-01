@@ -10,7 +10,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     urdf_tutorial_path = get_package_share_path('mbot_description')#find share directory in mbot_description
-    default_model_path = urdf_tutorial_path / 'urdf/mbot.xacro'
+    default_model_path = urdf_tutorial_path / 'urdf/mbot.urdf.xacro'
     
     #declare a model argument
     model_arg = DeclareLaunchArgument(name='model', default_value=str(default_model_path),
