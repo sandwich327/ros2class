@@ -4,15 +4,31 @@
 
 int main(int argc, char *argv[])
 {
-  // Initialize ROS and create the Node
+  // // Initialize ROS and create the Node
+  // rclcpp::init(argc, argv);
+  // auto const node = std::make_shared<rclcpp::Node>(
+  //     "hello_moveit", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
+
+  // // Create a ROS logger
+  // auto const logger = rclcpp::get_logger("hello_moveit");
+
+  // // Create the MoveIt MoveGroup Interface
+  // using moveit::planning_interface::MoveGroupInterface;
+  // auto move_group_interface = MoveGroupInterface(node, "panda_arm");
+  // 1. 初始化 ROS 并创建节点
   rclcpp::init(argc, argv);
   auto const node = std::make_shared<rclcpp::Node>(
-      "hello_moveit", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
-
-  // Create a ROS logger
+    "hello_moveit",
+    rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true)
+  );
   auto const logger = rclcpp::get_logger("hello_moveit");
+  // 2. 创建一个后台线程来 spin 节点（这是解决卡顿的关键！）
+  rclcpp::executors::SingleThreadedExecutor executor;
+  executor.add_node(node);
+  auto spinner = std::thread([&executor]() { executor.spin(); });
 
-  // Create the MoveIt MoveGroup Interface
+  // 3. 创建 MoveIt MoveGroup 接口
+  // 因为后台线程已经在处理通信了，这里就不会再卡住了
   using moveit::planning_interface::MoveGroupInterface;
   auto move_group_interface = MoveGroupInterface(node, "panda_arm");
 
@@ -48,5 +64,6 @@ int main(int argc, char *argv[])
 
   // Shutdown ROS
   rclcpp::shutdown();
+  spinner.join();  // 必须 join 线程，否则程序退出时会崩溃
   return 0;
 }

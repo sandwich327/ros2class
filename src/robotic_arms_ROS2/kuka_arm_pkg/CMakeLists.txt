@@ -15,23 +15,22 @@ find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_core  REQUIRED)
 find_package(graph_msgs  REQUIRED)
 
+find_package(tl_expected REQUIRED)
+
 set(Moveit_includes
 rclcpp
 moveit_ros_planning
 moveit_ros_planning_interface
 moveit_core
 graph_msgs
+tl_expected   
 )
-
-
 
 add_executable(jtc_node src/joint_trajectory_controller.cpp)
 ament_target_dependencies(jtc_node rclcpp trajectory_msgs)
 
 add_executable(moveit_drive src/motion_drive_moveit.cpp)
 ament_target_dependencies(moveit_drive ${Moveit_includes})
-
-
 
 install(TARGETS
   jtc_node moveit_drive
