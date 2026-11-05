@@ -31,6 +31,7 @@
 
     <xacro:rplidar prefix="laser" />
 
+
     <!-- IMU -->
     <xacro:include filename="$(find mbot_description)/urdf/sensors/IMU_withinertial.urdf.xacro" />
     <xacro:property name="imu_offset_x" value="0" />
